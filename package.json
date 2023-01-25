@@ -1,0 +1,9 @@
+{
+  "name": "oaks-lab-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Milos Savic",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["server", "client"]
+}

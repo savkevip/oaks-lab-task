@@ -1,0 +1,35 @@
+[22:27:28.189] Global cache location '/Users/savkevip/Library/Caches/typescript/4.9', safe file path '/users/savkevip/personal/oaks-lab-task/node_modules/typescript/lib/typingsafelist.json', types map path /users/savkevip/personal/oaks-lab-task/node_modules/typescript/lib/typesmap.json
+[22:27:28.191] Processing cache location '/Users/savkevip/Library/Caches/typescript/4.9'
+[22:27:28.191] Trying to find '/Users/savkevip/Library/Caches/typescript/4.9/package.json'...
+[22:27:28.192] Loaded content of '/Users/savkevip/Library/Caches/typescript/4.9/package.json': {"private":true,"dependencies":{"types-registry":"^0.1.628"}}
+[22:27:28.192] Loaded content of '/Users/savkevip/Library/Caches/typescript/4.9/package-lock.json'
+[22:27:28.193] Finished processing cache location '/Users/savkevip/Library/Caches/typescript/4.9'
+[22:27:28.193] Process id: 32618
+[22:27:28.193] NPM location: /usr/local/bin/npm (explicit '--npmLocation' not  provided)
+[22:27:28.193] validateDefaultNpmLocation: false
+[22:27:28.194] Npm config file: /Users/savkevip/Library/Caches/typescript/4.9/package.json
+[22:27:28.194] Updating types-registry npm package...
+[22:27:28.194] Exec: /usr/local/bin/npm install --ignore-scripts types-registry@latest
+[22:27:29.034]     Succeeded. stdout:
+    
+    up to date, audited 2 packages in 529ms
+
+found 0 vulnerabilities
+
+[22:27:29.034] Updated types-registry npm package
+[22:31:59.598] Got install request {"projectName":"/dev/null/inferredProject1*","fileNames":[],"compilerOptions":{"module":1,"target":3,"jsx":1,"allowJs":true,"allowSyntheticDefaultImports":true,"allowNonTsExtensions":true,"noEmitForJsFiles":true},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/Users/savkevip/personal/oaks-lab-task/server/src/db","kind":"discover"}
+[22:31:59.634] Loaded safelist from types map file '/users/savkevip/personal/oaks-lab-task/node_modules/typescript/lib/typesmap.json'
+[22:31:59.634] Explicitly included types: []
+[22:31:59.635] Inferred typings from unresolved imports: []
+[22:31:59.635] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/savkevip/personal/oaks-lab-task/server/src/db/bower_components","/Users/savkevip/personal/oaks-lab-task/server/src/db/node_modules"]}
+[22:31:59.635] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/savkevip/personal/oaks-lab-task/server/src/db/bower_components","/Users/savkevip/personal/oaks-lab-task/server/src/db/node_modules"]}
+[22:31:59.636] DirectoryWatcher:: Added:: WatchInfo: /Users/savkevip/personal/oaks-lab-task/server/src/db/bower_components
+[22:31:59.636] DirectoryWatcher:: Added:: WatchInfo: /Users/savkevip/personal/oaks-lab-task/server/src/db/bower_components 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[22:31:59.638] Elapsed:: 1.0328350067138672ms DirectoryWatcher:: Added:: WatchInfo: /Users/savkevip/personal/oaks-lab-task/server/src/db/bower_components 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[22:31:59.638] DirectoryWatcher:: Added:: WatchInfo: /Users/savkevip/personal/oaks-lab-task/server/src/db/node_modules
+[22:31:59.638] DirectoryWatcher:: Added:: WatchInfo: /Users/savkevip/personal/oaks-lab-task/server/src/db/node_modules 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[22:31:59.638] Elapsed:: 0.11687198281288147ms DirectoryWatcher:: Added:: WatchInfo: /Users/savkevip/personal/oaks-lab-task/server/src/db/node_modules 1 undefined Project: /dev/null/inferredProject1* watcher already invoked: false
+[22:31:59.638] Sending response:
+    {"projectName":"/dev/null/inferredProject1*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"module":1,"target":3,"jsx":1,"allowJs":true,"allowSyntheticDefaultImports":true,"allowNonTsExtensions":true,"noEmitForJsFiles":true},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[22:31:59.639] Response has been sent.
+[22:31:59.639] No new typings were requested as a result of typings discovery
