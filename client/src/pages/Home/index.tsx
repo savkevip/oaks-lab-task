@@ -6,14 +6,27 @@ import { CreateTaskDrawer } from "../../components/CreateTaskDrawer";
 import { EditStageDrawer } from "../../components/EditStageDrawer";
 import { Stage } from "../../components/Stage";
 import { Task } from "../../components/Task";
+import { useDeleteStage } from "../../hooks/useDeleteStage";
 import { useStagesAndTasks } from "../../hooks/useStagesAndTasks";
-import { StageId } from "../../utils/types";
 
 export const Home = () => {
-  const { data: { stages } = { stages: [] }, loading } = useStagesAndTasks();
+  const { data: { stages } = { stages: [] }, loading: loadingStagesAndTasks } =
+    useStagesAndTasks();
+  const [deleteStage, { loading: loadingDeleteStage }] = useDeleteStage();
   const [isCreateStageDrawerOpen, setIsCreateStageDrawerOpen] = useState(false);
   const [isCreateTaskDrawerOpen, setIsCreateTaskDrawerOpen] = useState(false);
-  const [editStage, setEditStage] = useState<StageId | undefined>();
+  const [editStage, setEditStage] = useState<string | undefined>();
+
+  const handleEditStage = (_id: string) => () => setEditStage(_id);
+
+  const handleDeleteStage = (_id: string) => () => {
+    const response = window.confirm("Are you sure?");
+    if (response) {
+      deleteStage({ variables: { id: _id } });
+    }
+  };
+
+  const loading = loadingStagesAndTasks || loadingDeleteStage;
 
   return (
     <div className="bg-gray-50 w-screen h-screen p-4">
@@ -56,8 +69,8 @@ export const Home = () => {
                   updatedAt={updatedAt}
                   count={count}
                   completed={completed}
-                  onEdit={() => setEditStage(_id)}
-                  onDelete={() => {}}
+                  onEdit={handleEditStage(_id)}
+                  onDelete={handleDeleteStage(_id)}
                 >
                   {!tasks.length ? (
                     <h1 className="text-xl">

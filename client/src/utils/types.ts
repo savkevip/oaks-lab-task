@@ -16,5 +16,3 @@ export type Task = {
 };
 
 export type FormStageValues = Pick<Stage, "title">;
-
-export type StageId = Pick<Stage, "_id">;

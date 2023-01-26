@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-import { Stage, StageId } from "../utils/types";
+import { Stage } from "../utils/types";
 
 const query = gql`
   query stage($id: ID!) {
@@ -10,7 +10,7 @@ const query = gql`
   }
 `;
 
-export const useStageDetails = (stageId?: StageId) =>
+export const useStageDetails = (stageId?: string) =>
   useQuery<{ stage: Stage }>(query, {
     variables: {
       id: stageId,

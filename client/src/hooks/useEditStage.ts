@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 
-import { FormStageValues, StageId } from "../utils/types";
+import { FormStageValues } from "../utils/types";
 
 const mutation = gql`
   mutation editStage($id: ID!, $title: String!) {
@@ -10,7 +10,7 @@ const mutation = gql`
 `;
 
 export const useEditStage = () =>
-  useMutation<boolean, FormStageValues & { id?: StageId }>(mutation, {
+  useMutation<boolean, FormStageValues & { id?: string }>(mutation, {
     refetchQueries: ["stages"],
     onCompleted: () =>
       toast("Stage updated.", {

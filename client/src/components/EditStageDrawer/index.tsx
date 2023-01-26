@@ -4,13 +4,13 @@ import { useFormik } from "formik";
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { useEditStage } from "../../hooks/useEditStage";
-import { FormStageValues, StageId, Stage } from "../../utils/types";
+import { FormStageValues, Stage } from "../../utils/types";
 import { stageValidationSchema } from "../../utils/validationSchemas";
 import { useStageDetails } from "../../hooks/useStageDetails";
 
 type Props = {
   onClose: () => void;
-  stageId?: StageId;
+  stageId?: string;
 };
 
 export const EditStageDrawer = ({ onClose, stageId }: Props) => {
@@ -19,7 +19,6 @@ export const EditStageDrawer = ({ onClose, stageId }: Props) => {
   const [updateStage, { loading: editStageLoading }] = useEditStage();
 
   const handleEditStage = async (values: FormStageValues) => {
-    if (!stageId) return;
     await updateStage({ variables: { ...values, id: stageId } });
     onClose();
   };
