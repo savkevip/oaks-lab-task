@@ -1,5 +1,3 @@
-# oaks-lab-task
-
 # To run the server
 `yarn dev`
 
