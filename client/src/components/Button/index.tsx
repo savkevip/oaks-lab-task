@@ -6,10 +6,11 @@ import {
   Lock,
   Plus,
   Prohibit,
+  FloppyDiskBack,
 } from "phosphor-react";
 import { ButtonHTMLAttributes } from "react";
 
-type Icon = "building" | "listPlus" | "plus" | "prohibit";
+type Icon = "building" | "listPlus" | "plus" | "prohibit" | "floppyDiskBack";
 
 type Props = {
   className?: string;
@@ -44,11 +45,17 @@ export const Button = ({
     if (icon === "listPlus") return <ListPlus {...iconProps} />;
     if (icon === "plus") return <Plus {...iconProps} />;
     if (icon === "prohibit") return <Prohibit {...iconProps} />;
+    if (icon === "floppyDiskBack") return <FloppyDiskBack {...iconProps} />;
     return null;
   };
 
   return (
-    <button {...props} className={classList} disabled={loading || disabled}>
+    <button
+      {...props}
+      className={classList}
+      type="button"
+      disabled={loading || disabled}
+    >
       {renderIcon()}
       {label}
       {loading ? (

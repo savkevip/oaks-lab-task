@@ -3,14 +3,17 @@ import { useState } from "react";
 import { Button } from "../../components/Button";
 import { CreateStageDrawer } from "../../components/CreateStageDrawer";
 import { CreateTaskDrawer } from "../../components/CreateTaskDrawer";
+import { EditStageDrawer } from "../../components/EditStageDrawer";
 import { Stage } from "../../components/Stage";
 import { Task } from "../../components/Task";
 import { useStagesAndTasks } from "../../hooks/useStagesAndTasks";
+import { StageId } from "../../utils/types";
 
 export const Home = () => {
   const { data: { stages } = { stages: [] }, loading } = useStagesAndTasks();
   const [isCreateStageDrawerOpen, setIsCreateStageDrawerOpen] = useState(false);
   const [isCreateTaskDrawerOpen, setIsCreateTaskDrawerOpen] = useState(false);
+  const [editStage, setEditStage] = useState<StageId | undefined>();
 
   return (
     <div className="bg-gray-50 w-screen h-screen p-4">
@@ -53,6 +56,8 @@ export const Home = () => {
                   updatedAt={updatedAt}
                   count={count}
                   completed={completed}
+                  onEdit={() => setEditStage(_id)}
+                  onDelete={() => {}}
                 >
                   {!tasks.length ? (
                     <h1 className="text-xl">
@@ -85,6 +90,10 @@ export const Home = () => {
       <CreateTaskDrawer
         isOpen={isCreateTaskDrawerOpen}
         onClose={() => setIsCreateTaskDrawerOpen(false)}
+      />
+      <EditStageDrawer
+        stageId={editStage}
+        onClose={() => setEditStage(undefined)}
       />
     </div>
   );

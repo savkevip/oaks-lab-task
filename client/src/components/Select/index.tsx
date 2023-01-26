@@ -9,7 +9,7 @@ type Option = {
 
 type Props = {
   className?: string;
-  error?: boolean;
+  error?: string | boolean;
   label: string;
   name: string;
   options: Option[];
@@ -23,6 +23,7 @@ export const Select = ({
   options,
   placeholder,
   error,
+  ...props
 }: Props) => {
   const classList = twMerge("flex flex-col relative pb-6", className);
 
@@ -32,6 +33,7 @@ export const Select = ({
         {label}
       </label>
       <select
+        {...props}
         className="roundend-sm bg-gray-200 text-black p-1 text-sm focus:outline-none appearance-none"
         name={name}
       >
@@ -49,7 +51,7 @@ export const Select = ({
       />
       {error ? (
         <span className="self-end text-xs text-red-400 absolute bottom-0.5">
-          Field is required
+          {error}
         </span>
       ) : null}
     </div>

@@ -1,45 +1,48 @@
 import Drawer from "react-modern-drawer";
-import { FormikHelpers, useFormik } from "formik";
+import { useFormik } from "formik";
 
 import { Input } from "../Input";
 import { Button } from "../Button";
-import { useCreateStage } from "../../hooks/useCreateStage";
-import { FormStageValues } from "../../utils/types";
+import { useEditStage } from "../../hooks/useEditStage";
+import { FormStageValues, StageId, Stage } from "../../utils/types";
 import { stageValidationSchema } from "../../utils/validationSchemas";
+import { useStageDetails } from "../../hooks/useStageDetails";
 
 type Props = {
-  isOpen: boolean;
   onClose: () => void;
+  stageId?: StageId;
 };
 
-export const CreateStageDrawer = ({ isOpen, onClose }: Props) => {
-  const [createStage, { loading }] = useCreateStage();
+export const EditStageDrawer = ({ onClose, stageId }: Props) => {
+  const { data: { stage } = { stage: {} as Stage }, loading: stageLoading } =
+    useStageDetails(stageId);
+  const [updateStage, { loading: editStageLoading }] = useEditStage();
 
-  const handleCreateStage = async (
-    values: FormStageValues,
-    { resetForm }: FormikHelpers<FormStageValues>
-  ) => {
-    await createStage({ variables: values });
-    resetForm();
+  const handleEditStage = async (values: FormStageValues) => {
+    if (!stageId) return;
+    await updateStage({ variables: { ...values, id: stageId } });
     onClose();
   };
 
   const { handleSubmit, handleChange, errors, touched, values } = useFormik({
-    initialValues: { title: "" },
-    onSubmit: handleCreateStage,
+    initialValues: { title: stage.title || "" },
+    onSubmit: handleEditStage,
     validationSchema: stageValidationSchema,
+    enableReinitialize: true,
   });
+
+  const loading = stageLoading || editStageLoading;
 
   return (
     <Drawer
-      open={isOpen}
+      open={!!stageId}
       onClose={onClose}
       direction="right"
       className="bg-gray-50 p-4 flex flex-col"
       size={300}
     >
       <div className="flex-1">
-        <h1 className="text-xl text-black mb-4">Create stage</h1>
+        <h1 className="text-xl text-black mb-4">Edit stage</h1>
         <Input
           className="mb-6"
           name="title"
@@ -53,8 +56,8 @@ export const CreateStageDrawer = ({ isOpen, onClose }: Props) => {
       <div className="flex items-center">
         <Button
           className="mr-4"
-          label="Create"
-          icon="plus"
+          label="Update"
+          icon="floppyDiskBack"
           loading={loading}
           onClick={() => handleSubmit()}
         />
