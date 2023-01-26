@@ -5,5 +5,11 @@
   "author": "Milos Savic",
   "license": "MIT",
   "private": true,
-  "workspaces": ["server", "client"]
+  "workspaces": ["server", "client"],
+  "scripts": {
+    "dev": "concurrently \"yarn workspace server dev\" \"yarn workspace client start\""
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
 }

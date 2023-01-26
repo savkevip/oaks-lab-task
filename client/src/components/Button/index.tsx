@@ -1,13 +1,22 @@
 import { twMerge } from "tailwind-merge";
-import { CircleNotch, Buildings, ListPlus, Lock } from "phosphor-react";
+import {
+  CircleNotch,
+  Buildings,
+  ListPlus,
+  Lock,
+  Plus,
+  Prohibit,
+} from "phosphor-react";
 import { ButtonHTMLAttributes } from "react";
+
+type Icon = "building" | "listPlus" | "plus" | "prohibit";
 
 type Props = {
   className?: string;
   loading?: boolean;
   disabled?: boolean;
   label: string;
-  icon: "building" | "listPlus";
+  icon?: Icon;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
@@ -23,13 +32,18 @@ export const Button = ({
     className
   );
 
+  const iconProps = {
+    className: "mr-2",
+    size: 14,
+    color: "black",
+  };
+
   const renderIcon = () => {
-    if (disabled || loading)
-      return <Lock className="mr-2" size={14} color="black" />;
-    if (icon === "building")
-      return <Buildings className="mr-2" size={14} color="black" />;
-    if (icon === "listPlus")
-      return <ListPlus className="mr-2" size={14} color="black" />;
+    if (disabled || loading) return <Lock {...iconProps} />;
+    if (icon === "building") return <Buildings {...iconProps} />;
+    if (icon === "listPlus") return <ListPlus {...iconProps} />;
+    if (icon === "plus") return <Plus {...iconProps} />;
+    if (icon === "prohibit") return <Prohibit {...iconProps} />;
     return null;
   };
 
@@ -38,7 +52,7 @@ export const Button = ({
       {renderIcon()}
       {label}
       {loading ? (
-        <CircleNotch className="animate-spin ml-2" size={14} color="black" />
+        <CircleNotch {...iconProps} className="animate-spin ml-2" />
       ) : null}
     </button>
   );

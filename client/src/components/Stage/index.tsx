@@ -24,8 +24,8 @@ export const Stage = ({
         <div className="rounded-full bg-gray-700 text-white w-10 h-10 mr-4 flex justify-center items-center text-sm">
           {count}
         </div>
-        <div className="">
-          <h2 className="text-xl text-black">{title}</h2>
+        <div>
+          <h1 className="text-xl text-black">{title}</h1>
           <span className="text-sm text-gray-400">
             {updatedAt || createdAt}
           </span>
