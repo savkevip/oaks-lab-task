@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server";
 
-import { typeDefs } from "./graphql/types";
-import { resolvers } from "./graphql/resolvers";
+import { typeDefs } from "./types";
+import { resolvers } from "./resolvers";
 
 const port = process.env.PORT || 5050;
 

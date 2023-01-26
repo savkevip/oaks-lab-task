@@ -1,40 +1,42 @@
 import Drawer from "react-modern-drawer";
-import { FormikHelpers, useFormik } from "formik";
-import { CircleNotch } from "phosphor-react";
+import { useFormik } from "formik";
 import { ChangeEvent } from "react";
+import { CircleNotch } from "phosphor-react";
 
 import { Input } from "../Input";
 import { Button } from "../Button";
-import { Select } from "../Select";
-import { useCreateTask } from "../../hooks/useCreateTask";
-import { FormTaskValues } from "../../utils/types";
+import { useEditTask } from "../../hooks/useEditTask";
+import { FormTaskValues, Task } from "../../utils/types";
 import { taskValidationSchema } from "../../utils/validationSchemas";
+import { useTaskDetails } from "../../hooks/useTaskDetails";
 import { useStagesAndTasks } from "../../hooks/useStagesAndTasks";
+import { Select } from "../Select";
 
 type Props = {
-  isOpen: boolean;
   onClose: () => void;
+  taskId?: string;
 };
 
-export const CreateTaskDrawer = ({ isOpen, onClose }: Props) => {
-  const [createTask, { loading: loadingCreateTask }] = useCreateTask();
-  const { data: { stages } = { stages: [] }, loading: loadingStages } =
-    useStagesAndTasks();
+export const EditTaskDrawer = ({ onClose, taskId }: Props) => {
+  const { data: { task } = { task: {} as Task }, loading: loadingStages } =
+    useTaskDetails(taskId);
+  const [updateTask, { loading: loadingEditStage }] = useEditTask();
+  const { data: { stages } = { stages: [] } } = useStagesAndTasks();
 
-  const handleCreateTask = async (
-    values: FormTaskValues,
-    { resetForm }: FormikHelpers<FormTaskValues>
-  ) => {
-    await createTask({ variables: values });
-    resetForm();
+  const handleEditTask = async (values: FormTaskValues) => {
+    await updateTask({ variables: { ...values, id: taskId } });
     onClose();
   };
 
   const { handleSubmit, handleChange, errors, touched, values, setFieldValue } =
     useFormik({
-      initialValues: { title: "", stageId: "" },
-      onSubmit: handleCreateTask,
+      initialValues: {
+        title: task.title || "",
+        stageId: task.stageId || "",
+      },
+      onSubmit: handleEditTask,
       validationSchema: taskValidationSchema,
+      enableReinitialize: true,
     });
 
   const handleSelect = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -49,7 +51,7 @@ export const CreateTaskDrawer = ({ isOpen, onClose }: Props) => {
 
   return (
     <Drawer
-      open={isOpen}
+      open={!!taskId}
       onClose={onClose}
       direction="right"
       className="bg-gray-50 p-4 flex flex-col"
@@ -57,7 +59,7 @@ export const CreateTaskDrawer = ({ isOpen, onClose }: Props) => {
     >
       <div className="flex-1">
         <div className="flex items-center mb-4">
-          <h1 className="text-xl text-black">Create task</h1>
+          <h1 className="text-xl text-black">Edit task</h1>
           {loadingStages ? (
             <CircleNotch
               className="animate-spin ml-2"
@@ -67,10 +69,12 @@ export const CreateTaskDrawer = ({ isOpen, onClose }: Props) => {
           ) : null}
         </div>
         <Input
+          className="mb-6"
           name="title"
           label="Task title"
-          value={values.title}
+          type="text"
           onChange={handleChange}
+          value={values.title}
           error={touched.title && errors.title}
         />
         <Select
@@ -87,16 +91,16 @@ export const CreateTaskDrawer = ({ isOpen, onClose }: Props) => {
       <div className="flex items-center">
         <Button
           className="mr-4"
-          label="Create"
-          icon="plus"
-          loading={loadingCreateTask}
+          label="Update"
+          icon="floppyDiskBack"
+          loading={loadingEditStage}
           onClick={() => handleSubmit()}
         />
         <Button
           label="Cancel"
           icon="prohibit"
           onClick={onClose}
-          loading={loadingCreateTask}
+          loading={loadingEditStage}
         />
       </div>
     </Drawer>

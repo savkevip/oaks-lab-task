@@ -1,5 +1,7 @@
-import { CheckSquare, Square, Lock } from "phosphor-react";
+import { CheckSquare, Square, Lock, Pencil, Trash } from "phosphor-react";
 import { twMerge } from "tailwind-merge";
+
+import { getRelativeHours } from "../../utils/helpers";
 
 type Props = {
   updatedAt?: string;
@@ -8,6 +10,8 @@ type Props = {
   title: string;
   isDone: boolean;
   onCheck: (value: boolean) => void;
+  onEdit: () => void;
+  onDelete: () => void;
 };
 
 export const Task = ({
@@ -17,10 +21,12 @@ export const Task = ({
   updatedAt,
   disabled,
   onCheck,
+  onEdit,
+  onDelete,
 }: Props) => {
   const handleCheck = () => {
     if (disabled) return;
-    onCheck(isDone);
+    onCheck(!isDone);
   };
 
   const iconProps = {
@@ -41,8 +47,24 @@ export const Task = ({
       <div className="flex items-center">
         {renderIcon()}
         <span>{title}</span>
+        <Pencil
+          {...iconProps}
+          size={16}
+          className="cursor-pointer ml-4"
+          onClick={onEdit}
+        />
+        <Trash
+          {...iconProps}
+          size={16}
+          className="cursor-pointer ml-2"
+          onClick={onDelete}
+        />
       </div>
-      <span className="text-sm text-gray-400">{updatedAt || createdAt}</span>
+      <span className="text-sm text-gray-400">
+        {updatedAt
+          ? `Updated ${getRelativeHours(updatedAt)}`
+          : `Created ${getRelativeHours(createdAt)}`}
+      </span>
     </div>
   );
 };

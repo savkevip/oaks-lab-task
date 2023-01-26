@@ -16,3 +16,5 @@ export type Task = {
 };
 
 export type FormStageValues = Pick<Stage, "title">;
+
+export type FormTaskValues = Partial<Task>;

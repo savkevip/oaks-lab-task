@@ -1,5 +1,5 @@
 import { CaretCircleDown } from "phosphor-react";
-import { SelectHTMLAttributes } from "react";
+import { ChangeEvent, SelectHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Option = {
@@ -14,6 +14,7 @@ type Props = {
   name: string;
   options: Option[];
   placeholder: string;
+  onSelect: (event: ChangeEvent<HTMLSelectElement>) => void;
 } & SelectHTMLAttributes<HTMLSelectElement>;
 
 export const Select = ({
@@ -23,6 +24,7 @@ export const Select = ({
   options,
   placeholder,
   error,
+  onSelect,
   ...props
 }: Props) => {
   const classList = twMerge("flex flex-col relative pb-6", className);
@@ -36,6 +38,7 @@ export const Select = ({
         {...props}
         className="roundend-sm bg-gray-200 text-black p-1 text-sm focus:outline-none appearance-none"
         name={name}
+        onChange={onSelect}
       >
         <option value="">{placeholder}</option>
         {options.map(({ label, value }) => (

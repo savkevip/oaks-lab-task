@@ -19,6 +19,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <ApolloProvider client={client}>
       <Home />
     </ApolloProvider>
-    <ToastContainer />
+    <ToastContainer position="top-center" />
   </React.StrictMode>
 );

@@ -1,9 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 
-import data from "../../db";
-import { updateDb } from "../../db/utils";
-import { getCurrentStage, getCurrentTask } from "../../utils/helpers";
-import { ResolversParentTypes, Task } from "../../utils/types";
+import data from "../db";
+import { updateDb } from "../db/utils";
+import { getCurrentStage, getCurrentTask } from "../utils/helpers";
+import { ResolversParentTypes, Task } from "../utils/types";
 
 export const Query = {
   task: (_: ResolversParentTypes, { _id }: Pick<Task, "_id">): Task =>
@@ -15,7 +15,7 @@ export const Mutation = {
     _: ResolversParentTypes,
     { title, stageId }: Pick<Task, "title" | "stageId">
   ): Promise<boolean> => {
-    // not great not terible - just to prevent call if stage is not exist
+    // not great not terible - just to prevent call stage is not exist
     getCurrentStage(stageId);
 
     data.tasks.push({
@@ -46,7 +46,7 @@ export const Mutation = {
       currentTask.isDone = isDone;
     }
     if (stageId) {
-      // not great not terible - just to prevent call if stage is not exist
+      // not great not terible - just to prevent call if stage not exist
       getCurrentStage(stageId);
       currentTask.stageId = stageId;
     }
