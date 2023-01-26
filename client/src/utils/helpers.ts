@@ -1,6 +1,6 @@
 import { Stage, Task } from "./types";
 
-export const getRelativeHours = (date: string) => {
+export const getRelativeFromTime = (date: string) => {
   const dateObject = new Date(date);
   const currentTime = Date.now();
   const diff = currentTime - dateObject.getTime();

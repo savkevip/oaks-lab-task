@@ -1,7 +1,7 @@
 import { Check, Pencil, Trash } from "phosphor-react";
 import { ReactNode } from "react";
 
-import { getRelativeHours } from "../../utils/helpers";
+import { getRelativeFromTime } from "../../utils/helpers";
 
 type Props = {
   updatedAt?: string;
@@ -51,8 +51,8 @@ export const Stage = ({
           </div>
           <span className="text-sm text-gray-400">
             {updatedAt
-              ? `Updated ${getRelativeHours(updatedAt)}`
-              : `Created ${getRelativeHours(createdAt)}`}
+              ? `Updated ${getRelativeFromTime(updatedAt)}`
+              : `Created ${getRelativeFromTime(createdAt)}`}
           </span>
         </div>
         {completed ? (

@@ -1,7 +1,7 @@
 import { CheckSquare, Square, Lock, Pencil, Trash } from "phosphor-react";
 import { twMerge } from "tailwind-merge";
 
-import { getRelativeHours } from "../../utils/helpers";
+import { getRelativeFromTime } from "../../utils/helpers";
 
 type Props = {
   updatedAt?: string;
@@ -62,8 +62,8 @@ export const Task = ({
       </div>
       <span className="text-sm text-gray-400">
         {updatedAt
-          ? `Updated ${getRelativeHours(updatedAt)}`
-          : `Created ${getRelativeHours(createdAt)}`}
+          ? `Updated ${getRelativeFromTime(updatedAt)}`
+          : `Created ${getRelativeFromTime(createdAt)}`}
       </span>
     </div>
   );
