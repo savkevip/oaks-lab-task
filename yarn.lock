@@ -1336,6 +1336,14 @@
     tslib "^2.4.1"
     webcrypto-core "^1.7.4"
 
+"@playwright/test@^1.30.0":
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.30.0.tgz#8c0c4930ff2c7be7b3ec3fd434b2a3b4465ed7cb"
+  integrity sha512-SVxkQw1xvn/Wk/EvBnqWIq6NLo1AppwbYOjNLmyU0R1RoQ3rLEBtmjTnElcnz8VEtn11fptj1ECxK0tgURhajw==
+  dependencies:
+    "@types/node" "*"
+    playwright-core "1.30.0"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -3824,6 +3832,11 @@ pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
+
+playwright-core@1.30.0:
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.30.0.tgz#de987cea2e86669e3b85732d230c277771873285"
+  integrity sha512-7AnRmTCf+GVYhHbLJsGUtskWTE33SwMZkybJ0v6rqR1boxq2x36U7p1vDRV7HO2IwTZgmycracLxPEJI49wu4g==
 
 postcss-import@^14.1.0:
   version "14.1.0"
